@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import SingleComment from "./SingleComment";
-import image1 from './image/a.jpg';
-import image2 from './image/b.png';
-import image3 from './image/c.jpg';
-import UserCard from "./UserCard";
+// import SingleComment from "./SingleComment";
+// import image1 from './image/a.jpg';
+// import image2 from './image/b.png';
+// import image3 from './image/c.jpg';
+// import UserCard from "./UserCard";
 
-//functional component
+//functional component 
 // const App = () => {
 //   window.navigator.geolocation.getCurrentPosition(
 //     (position) => console.log(position),
@@ -54,14 +54,29 @@ import UserCard from "./UserCard";
 
 //class based component
 class App extends React.Component {
-  render() {
+
+  //to define objects of class
+  constructor(props) {
+    super(props)
+
+    this.state = { lat: null, long: null, error: null }
     window.navigator.geolocation.getCurrentPosition(
-      (position) => console.log(position),
-      (error) => console.log(error)
+      (position) => {
+        this.setState({ lat: position.coords.latitude, long: position.coords.longitude })
+      },
+      (error) => {
+        this.setState({ error: error.message })
+      }
     );
+  }
+
+  //must for react
+  render() {
+
     return (
       <div>
-        You are in Northern Hemisphere!
+        {this.state.lat}  {this.state.long}
+        {this.state.error}
       </div>
     )
   }
