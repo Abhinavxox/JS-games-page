@@ -55,11 +55,19 @@ import ReactDOM from "react-dom";
 //class based component
 class App extends React.Component {
 
-  //to define objects of class
-  constructor(props) {
-    super(props)
+  // //to define objects of class
+  // constructor(props) {
+  //   super(props)
 
-    this.state = { lat: null, long: null, error: null }
+  //   this.state = { lat: null, long: null, error: null }
+  //   //data loading is prohibited here
+  // }
+
+  state = { lat: null, long: null, error: null }
+
+  //good place to data loading
+  componentDidMount() {
+    console.log('componentDidMount')
     window.navigator.geolocation.getCurrentPosition(
       (position) => {
         this.setState({ lat: position.coords.latitude, long: position.coords.longitude })
@@ -68,11 +76,6 @@ class App extends React.Component {
         this.setState({ error: error.message })
       }
     );
-  }
-
-  //good place to data loading
-  componentDidMount() {
-    console.log('componentDidMount')
   }
 
   componentDidUpdate() {
