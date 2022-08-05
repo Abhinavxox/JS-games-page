@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import SingleComment from "./SingleComment";
-import image1 from './image/a.jpg';
-import image2 from './image/b.png';
-import image3 from './image/c.jpg';
-import UserCard from "./UserCard";
+// import SingleComment from "./SingleComment";
+// import image1 from './image/a.jpg';
+// import image2 from './image/b.png';
+// import image3 from './image/c.jpg';
+// import UserCard from "./UserCard";
 
 //functional component 
 // const App = () => {
@@ -68,6 +68,15 @@ class App extends React.Component {
         this.setState({ error: error.message })
       }
     );
+  }
+
+  //good place to data loading
+  componentDidMount() {
+    console.log('componentDidMount')
+  }
+
+  componentDidUpdate() {
+    console.log('componentDidUpdate')
   }
 
   //must for react
