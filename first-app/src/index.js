@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// import SingleComment from "./SingleComment";
-// import image1 from './image/a.jpg';
-// import image2 from './image/b.png';
-// import image3 from './image/c.jpg';
-// import UserCard from "./UserCard";
+import SingleComment from "./SingleComment";
+import image1 from './image/a.jpg';
+import image2 from './image/b.png';
+import image3 from './image/c.jpg';
+import UserCard from "./UserCard";
 
 //functional component 
 // const App = () => {
