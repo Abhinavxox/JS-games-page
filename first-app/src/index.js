@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import HemisphereDisplay from './HemishpereDisplay';
 // import SingleComment from "./SingleComment";
 // import image1 from './image/a.jpg';
 // import image2 from './image/b.png';
@@ -87,8 +88,7 @@ class App extends React.Component {
 
     return (
       <div>
-        {this.state.lat}  {this.state.long}
-        {this.state.error}
+        <HemisphereDisplay latitude={this.state.latitude} />
       </div>
     )
   }
