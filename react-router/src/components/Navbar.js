@@ -10,7 +10,7 @@ const Navbar = () => {
                 <button className="ui button"><NavLink to="/about">About</NavLink></button>
                 <button className="ui button"><NavLink to="/contact">Contact</NavLink ></button >
             </div>
-        </nav >
+        </nav>
     )
 }
 
