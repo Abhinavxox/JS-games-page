@@ -25,9 +25,22 @@ app.use(express.urlencoded({ extended: true }));
 const userRouter = require("./routes/users");
 app.use("/users", userRouter);
 
+app.get("/a", (req, res) => {
+  res.json(users);
+});
+
 function logger(req, res, next) {
   console.log(req.originalUrl);
   next();
 }
 
-app.listen(3000);
+let users = {
+  users: [
+    { name: "Abhinav Pandey", password: "123" },
+    { name: "Ram Pandey", password: "123" },
+    { name: "Hari Pandey", password: "123" },
+    { name: "Shyam Pandey", password: "123" },
+    { name: "Laxman Pandey", password: "123" },
+  ],
+};
+app.listen(5000);
