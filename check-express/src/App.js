@@ -9,19 +9,43 @@ const fetchFromServer = async () => {
 };
 
 function App() {
-  const [users, setUsers] = useState();
+  let users = {};
+  let flag = false;
 
-  useEffect(() => {
-    fetchFromServer().then((data) => setUsers(data));
-  }, []);
+  const getUsers = async () => {
+    const data = await fetchFromServer();
+    users = data;
+    if (users != null) {
+      flag = true;
+    }
+  };
 
-  console.log(users);
+  function RenderUsers() {
+    if (flag) {
+      return (
+        <>
+          {users.users.map((data) => (
+            <div key={data.name}>
+              {data.name} : {data.password}
+            </div>
+          ))}
+        </>
+      );
+    }
+    return <></>;
+  }
+
   return (
     <div className="ui segment">
       <Form />
       <div className="ui segment">
         <h1>Registered Users:</h1>
-        <div className="users list"></div>
+        <button className="ui button" onClick={getUsers}>
+          GET
+        </button>
+        <div className="users list">
+          <RenderUsers />
+        </div>
       </div>
     </div>
   );
