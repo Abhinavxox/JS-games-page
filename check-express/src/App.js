@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Form from "./components/Form";
 
 const fetchFromServer = async () => {
@@ -9,18 +9,18 @@ const fetchFromServer = async () => {
 };
 
 function App() {
-  let users = {};
-  let flag = false;
+  const [users, setusers] = useState();
+  const [flag, setFlag] = useState(false);
 
   const getUsers = async () => {
     const data = await fetchFromServer();
-    users = data;
+    setusers(data);
     if (users != null) {
-      flag = true;
+      setFlag(true);
     }
   };
 
-  function RenderUsers() {
+  const RenderUsers = () => {
     if (flag) {
       return (
         <>
@@ -33,16 +33,14 @@ function App() {
       );
     }
     return <></>;
-  }
+  };
 
   return (
     <div className="ui segment">
       <Form />
       <div className="ui segment">
         <h1>Registered Users:</h1>
-        <button className="ui button" onClick={getUsers}>
-          GET
-        </button>
+        <button onClick={getUsers}>GET</button>
         <div className="users list">
           <RenderUsers />
         </div>
