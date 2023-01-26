@@ -18,6 +18,7 @@ function App() {
     if (users != null) {
       setFlag(true);
     }
+    console.log(users);
   };
 
   const RenderUsers = () => {
