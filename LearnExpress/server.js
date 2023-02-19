@@ -33,16 +33,18 @@ app.use(express.urlencoded({ extended: true }));
 const userRouter = require("./routes/users");
 app.use("/users", userRouter);
 
-app.get("/a", async (req, res) => {
-  try {
-    const data = await fs.promises.readFile(
-      "./public/assets/users.json",
-      "utf8"
-    );
-    res.json(JSON.parse(data));
-  } catch (err) {
-    console.log(err);
-  }
+app.get("/a", (req, res) => {
+  setTimeout(async () => {
+    try {
+      const data = await fs.promises.readFile(
+        "./public/assets/users.json",
+        "utf8"
+      );
+      res.json(JSON.parse(data));
+    } catch (err) {
+      console.log(err);
+    }
+  }, 5000);
 });
 
 app.post("/a", async (req, res) => {
