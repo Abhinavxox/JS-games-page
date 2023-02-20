@@ -9,10 +9,10 @@ const Form = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const requestURL = `http://localhost:5000/a`;
-    await axios
+    axios
       .post(requestURL, formData)
       .then((response) => {
         if (response.data == "Data appended succesfully") {
