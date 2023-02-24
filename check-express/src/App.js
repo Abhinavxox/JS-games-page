@@ -4,7 +4,6 @@ import Form from "./components/Form";
 import HashLoader from "react-spinners/HashLoader";
 
 function App() {
-  connection();
   const [Users, setUsers] = useState();
   const [Loading, setLoading] = useState(false);
   useEffect(() => {
