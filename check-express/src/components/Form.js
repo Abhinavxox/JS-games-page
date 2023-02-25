@@ -1,5 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
+const mongoose = require("mongoose");
+
+const userSchema = mongoose.Schema({
+  name: String,
+  password: String,
+});
 
 const Form = () => {
   const [formData, setFormData] = useState({ name: "", password: "" });
@@ -9,19 +15,35 @@ const Form = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const requestURL = `http://localhost:5000/a`;
-    axios
-      .post(requestURL, formData)
-      .then((response) => {
-        if (response.data == "Data appended succesfully") {
-          alert(response.data);
-        }
-      })
-      .catch((err) => {
-        alert(err);
-      });
+    // axios
+    //   .post(requestURL, formData)
+    //   .then((response) => {
+    //     if (response.data == "Data appended succesfully") {
+    //       alert(response.data);
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     alert(err);
+    //   });
+
+    //post to db
+    const uri = "mongodb://localhost:27017/UsersDB";
+    mongoose.connect(uri);
+
+    const User = mongoose.model("User", userSchema);
+    const name = formData.name;
+    const password = formData.password;
+    const newUser = new User({ name, password });
+
+    newUser
+      .save()
+      .then(() => console.log("New user saved"))
+      .catch((err) => console.log(err));
+
+    mongoose.disconnect();
   };
 
   return (
